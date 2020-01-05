@@ -1,12 +1,10 @@
+a = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 N = int(input())
 S = input()
-
-if(N%2 == 0):
-  n = N//2
-  if(S[:(n-1)] == S[n:]):
-    print("Yes")
-  else:
-    print("No")
-else:
-  print("No")
-  
+ 
+for i in S:
+    b = a.index(i) + N
+    if b <= 25:
+        print(a[b], end="")
+    else:
+        print(a[b-26], end="")
