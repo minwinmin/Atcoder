@@ -17,4 +17,5 @@ A = list(map(float, input().split()))
 A、B = list(map(float, input().split()))
 
 ・複数行
-l = [(lambda s_lst: (int(s_lst[0]), s_lst[1]))(input().split()) for i in range(M)]
+
+A = [(lambda s_lst: (int(s_lst[0]), s_lst[1]))(input().split()) for i in range(M)]
