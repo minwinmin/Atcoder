@@ -7,7 +7,9 @@ N = input()
 数値
 N = int(input())
 複数の数値
+
 ・A1〜An
+
 A = list(map(float, input().split()))
 ・A、B
 A、B = list(map(float, input().split()))
