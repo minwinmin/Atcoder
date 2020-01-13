@@ -11,6 +11,9 @@ N = int(input())
 ・A1〜An
 
 A = list(map(float, input().split()))
+
 ・A、B
+
 A、B = list(map(float, input().split()))
-・
+
+・複数行
