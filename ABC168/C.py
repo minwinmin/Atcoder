@@ -1,58 +1,55 @@
-#全探索、bit探索などがキーワード
-#部分集合を扱うときは2進数を使うのがよい
 
-"""
-N, M, X = list(map(int, input().split()))
-C = []
-A = []
-
-for i in range(N):
-    C.append(list(map(int, input().split())))
-print(C[1]+C[2])
-"""
-
-"""
-入力方法
-N M X
-C1 A11 A12 ... A1M
-:
-:
-CN AN1 AN2 ... ANN         
-"""
-
-N, M, X = map(int, input().split())
-C = []
-A = []
-for  i in range(N):
-    t = list(map(int, input().split()))
-    C.append(t[0])
-    A.append(t[1:])
-    
-result = -1
-"""
-<< bit演算に関する演算子
-左辺の値を右辺の値だけ左へシフトすることを意味する
-
-https://www.javadrive.jp/python/num/index4.html
-
-下記の場合、1からNまで2真数でシフトしていく感じ
-"""
-
-for i in range(1 << N):
-    #初期化
-    t = [0] * M
-    c = 0
-    #print(i)
-    for j in range(N):
-        #print(j)
-        if(i >> j ) & 1 == 0 :
-            continue
-        c += C[j]
-        for k in range(M):
-            t[k] += A[j][k]
-    if all(x >= X for x in t):
-        if result == -1:
-            result = c
-        else:
-            result = min(result, c)
-print(result)
+def check(learn_total):
+    for i in range(m):
+        if learn_total[i] < x:
+            return False
+    return True
+ 
+ 
+def calc_price(bit):
+    price_total = 0  # 値段の合計
+    learn_total = [0] * m  # 理解度
+ 
+    for i in range(n):
+        if (bit >> i) & 1:  # i桁目が0か1か見て、i番目を買うか買わないか判定します
+            price_total += c[i]  # 買うので、i番目の値段を加算します
+            print(price_total)
+            learn = a[i]  # 「i番目の参考書を読んで増える、各アルゴリズムの理解度」のリストです
+            print(learn)
+            for j, le in enumerate(learn):  # 理解度を足します。 enumerateを使うと、range(n)よりスマートです
+                learn_total[j] += le
+                print(learn_total[j])
+ 
+    # 条件を満たすか、check関数で確認します
+    if check(learn_total):
+        return price_total
+    else:
+        return INF
+ 
+ 
+if __name__ == '__main__':
+    INF = float("inf")
+ 
+    n, m, x = list(map(int, input().split()))
+ 
+    # 空のリストを作って、appendで追加していきます
+    c = []  # 参考書の値段です
+    a = []  # 各参考書に入る理解度です
+ 
+    for i in range(n):
+		# こうすると、2つ目以降をリストで受け取れます
+		# *a_temp の意味
+        c_temp, *a_temp = list(map(int, input().split())) 
+        c.append(c_temp)
+        a.append(a_temp)
+ 
+    ans = INF
+ 
+    for bit in range(1 << n):
+        price = calc_price(bit)  # 条件を満たすなら価格、満たさないならINFが返ってきます
+        ans = min(ans, price)  # 答えを更新します
+ 
+    if ans == INF:
+        print(-1)
+    else:
+        print(ans)
